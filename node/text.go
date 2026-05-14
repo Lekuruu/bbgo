@@ -3,7 +3,7 @@ package node
 import (
 	"strings"
 
-	"github.com/namreg/bbgo/token"
+	"github.com/Lekuruu/bbgo/token"
 )
 
 // Text is a text node.

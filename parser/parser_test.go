@@ -4,10 +4,10 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/namreg/bbgo/lexer"
-	"github.com/namreg/bbgo/node"
-	"github.com/namreg/bbgo/parser"
-	"github.com/namreg/bbgo/token"
+	"github.com/Lekuruu/bbgo/lexer"
+	"github.com/Lekuruu/bbgo/node"
+	"github.com/Lekuruu/bbgo/parser"
+	"github.com/Lekuruu/bbgo/token"
 )
 
 func TestParse(t *testing.T) {

@@ -3,7 +3,7 @@ package node
 import (
 	"fmt"
 
-	"github.com/namreg/bbgo/token"
+	"github.com/Lekuruu/bbgo/token"
 )
 
 var _ Tag = (*ClosingTag)(nil)

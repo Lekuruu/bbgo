@@ -4,8 +4,8 @@ import (
 	"io"
 	"strings"
 
-	"github.com/namreg/bbgo/context"
-	"github.com/namreg/bbgo/node"
+	"github.com/Lekuruu/bbgo/context"
+	"github.com/Lekuruu/bbgo/node"
 )
 
 // Color processes [color] bbcode.

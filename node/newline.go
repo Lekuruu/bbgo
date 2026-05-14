@@ -1,7 +1,7 @@
 package node
 
 import (
-	"github.com/namreg/bbgo/token"
+	"github.com/Lekuruu/bbgo/token"
 )
 
 // Newline is a new line node.

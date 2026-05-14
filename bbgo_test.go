@@ -4,7 +4,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/namreg/bbgo"
+	"github.com/Lekuruu/bbgo"
 )
 
 func TestBBGO_Parse(t *testing.T) {

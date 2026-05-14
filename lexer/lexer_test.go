@@ -3,8 +3,8 @@ package lexer_test
 import (
 	"testing"
 
-	"github.com/namreg/bbgo/lexer"
-	"github.com/namreg/bbgo/token"
+	"github.com/Lekuruu/bbgo/lexer"
+	"github.com/Lekuruu/bbgo/token"
 )
 
 func TestNextToken(t *testing.T) {

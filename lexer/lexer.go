@@ -3,7 +3,7 @@ package lexer
 import (
 	"unicode"
 
-	"github.com/namreg/bbgo/token"
+	"github.com/Lekuruu/bbgo/token"
 )
 
 // Lexer retreives tokens from input string.

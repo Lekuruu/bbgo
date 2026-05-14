@@ -1,7 +1,7 @@
 package node
 
 import (
-	"github.com/namreg/bbgo/token"
+	"github.com/Lekuruu/bbgo/token"
 )
 
 // Node is the smallest piece of the parsing result.

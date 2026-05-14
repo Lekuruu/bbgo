@@ -3,9 +3,9 @@ package parser
 import (
 	"strings"
 
-	"github.com/namreg/bbgo/lexer"
-	"github.com/namreg/bbgo/node"
-	"github.com/namreg/bbgo/token"
+	"github.com/Lekuruu/bbgo/lexer"
+	"github.com/Lekuruu/bbgo/node"
+	"github.com/Lekuruu/bbgo/token"
 )
 
 const internalBufCap = 20

@@ -3,8 +3,8 @@ package processor
 import (
 	"io"
 
-	"github.com/namreg/bbgo/context"
-	"github.com/namreg/bbgo/node"
+	"github.com/Lekuruu/bbgo/context"
+	"github.com/Lekuruu/bbgo/node"
 )
 
 // URL processes [url] bbcode.

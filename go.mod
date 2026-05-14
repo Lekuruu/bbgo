@@ -1,3 +1,3 @@
-module github.com/namreg/bbgo
+module github.com/Lekuruu/bbgo
 
 go 1.18

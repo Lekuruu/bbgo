@@ -4,7 +4,7 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/namreg/bbgo/token"
+	"github.com/Lekuruu/bbgo/token"
 )
 
 var _ Tag = (*OpeningTag)(nil)
