@@ -334,47 +334,66 @@ func (b *BBGO) tokenize(input string, context Context) []parseToken {
 }
 
 func tagExtent(input string, start int) (int, bool) {
-	inQuote := rune(0)
-	quotable := false
+	inQuote := byte(0)
+	expectingValue := false
+	inBareValue := false
 
 	for i := start + 1; i < len(input); i++ {
-		ch := rune(input[i])
+		ch := input[i]
 		if ch == '\n' {
 			return i, false
 		}
-		if ch == '=' {
-			quotable = true
-		}
-		if quoteChanged(ch, quotable, &inQuote) {
+
+		if inQuote != 0 {
+			if ch == '\\' && i+1 < len(input) && escapableQuote(input[i+1]) {
+				i++
+				continue
+			}
+			if ch == inQuote {
+				inQuote = 0
+			}
 			continue
 		}
-		if inQuote == 0 && ch == '[' {
+
+		if expectingValue {
+			if ch == ' ' || ch == '\t' {
+				continue
+			}
+			expectingValue = false
+			if ch == '"' || ch == '\'' {
+				inQuote = ch
+				continue
+			}
+			inBareValue = ch != ']'
+		}
+
+		if inBareValue {
+			if ch == ' ' || ch == '\t' {
+				inBareValue = false
+				continue
+			}
+			if ch == '[' {
+				return i, false
+			}
+			if ch == ']' {
+				return i + 1, true
+			}
+			continue
+		}
+
+		if ch == '=' {
+			expectingValue = true
+			continue
+		}
+		if ch == '[' {
 			return i, false
 		}
-		if inQuote == 0 && ch == ']' {
+		if ch == ']' {
 			return i + 1, true
 		}
 	}
 
 	return len(input), false
-}
-
-func quoteChanged(ch rune, quotable bool, inQuote *rune) bool {
-	if ch != '"' && ch != '\'' {
-		return false
-	}
-	if !quotable && *inQuote == 0 {
-		return false
-	}
-	if *inQuote == 0 {
-		*inQuote = ch
-		return true
-	}
-	if *inQuote == ch {
-		*inQuote = 0
-		return true
-	}
-	return false
 }
 
 func (b *BBGO) tokenizeTag(input string, tagText string, start int, end int, context Context) []parseToken {

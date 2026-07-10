@@ -28,6 +28,7 @@ func TestBBGO_Parse(t *testing.T) {
 		{"quoted option with bracket", `[quote name="Some]body"]hello[/quote]`, `<blockquote><cite>Some]body said:</cite>hello</blockquote>`},
 		{"url", `[url]https://example.com[/url]`, `<a href="https://example.com">https://example.com</a>`},
 		{"url with value", `[url=example.com]Example[/url]`, `<a href="http://example.com">Example</a>`},
+		{"url value with apostrophe", `[url=https://example.com/Adi's]Adi's[/url]`, `<a href="https://example.com/Adi&#39;s">Adi&#39;s</a>`},
 		{"img", `[img]https://example.com/logo.png[/img]`, `<img src="https://example.com/logo.png">`},
 		{"code raw", "[code][b]some[/b]\n[/code][b]more[/b]", "<pre>[b]some[/b]<br /></pre><b>more</b>"},
 		{"list", `[list][*] item 1[*] item 2[/list]`, `<ul><li> item 1</li><li> item 2</li></ul>`},
