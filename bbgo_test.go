@@ -24,6 +24,7 @@ func TestBBGO_Parse(t *testing.T) {
 		{"color", `[color=#00BFFF]hello[/color]`, `<span style="color: #00BFFF;">hello</span>`},
 		{"quote", `[quote]hello[/quote]`, `<blockquote>hello</blockquote>`},
 		{"quote with value", `[quote=Somebody]hello[/quote]`, `<blockquote><cite>Somebody said:</cite>hello</blockquote>`},
+		{"quote with unquoted spaced value", `[quote=Somebody Else]hello[/quote]`, `<blockquote><cite>Somebody Else said:</cite>hello</blockquote>`},
 		{"quote with attr", `[quote name="Somebody Else"]hello[/quote]`, `<blockquote><cite>Somebody Else said:</cite>hello</blockquote>`},
 		{"quoted option with bracket", `[quote name="Some]body"]hello[/quote]`, `<blockquote><cite>Some]body said:</cite>hello</blockquote>`},
 		{"url", `[url]https://example.com[/url]`, `<a href="https://example.com">https://example.com</a>`},

@@ -497,7 +497,7 @@ func parseOptions(content string) (string, Options) {
 		return "", options
 	}
 	if strings.HasPrefix(rest, "=") {
-		value, remaining := readValue(rest[1:])
+		value, remaining := readTagValue(rest[1:])
 		options[normalizeName(name)] = value
 		rest = remaining
 	}
@@ -546,6 +546,19 @@ func readValue(input string) (string, string) {
 	return readBareValue(input)
 }
 
+func readTagValue(input string) (string, string) {
+	input = strings.TrimLeft(input, " \t")
+	if input == "" {
+		return "", ""
+	}
+	if input[0] == '"' || input[0] == '\'' {
+		return readQuotedValue(input)
+	}
+	value, _ := readBareTagValue(input)
+	_, remaining := readBareValue(input)
+	return value, remaining
+}
+
 func readQuotedValue(input string) (string, string) {
 	quote := input[0]
 	var out strings.Builder
@@ -576,6 +589,20 @@ func readBareValue(input string) (string, string) {
 		}
 	}
 	return input, ""
+}
+
+func readBareTagValue(input string) (string, string) {
+	for i, r := range input {
+		if (r == ' ' || r == '\t') && startsNamedOption(input[i:]) {
+			return input[:i], input[i:]
+		}
+	}
+	return input, ""
+}
+
+func startsNamedOption(input string) bool {
+	name, rest := readName(input)
+	return name != "" && strings.HasPrefix(rest, "=")
 }
 
 func (b *BBGO) formatTokens(tokens []parseToken, parent *TagOptions, state *formatState, depth int, context Context) string {
